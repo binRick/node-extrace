@@ -1,0 +1,24 @@
+{
+  "name": "node-extrace",
+  "version": "1.0.0",
+  "description": "Nodejs module to display realtime exec system calls with extrace tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binRick/node-extrace.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/binRick/node-extrace/issues"
+  },
+  "homepage": "https://github.com/binRick/node-extrace#readme",
+  "dependencies": {
+    "async": "^2.6.1",
+    "chalk": "^2.4.1",
+    "underscore": "^1.9.1"
+  }
+}
