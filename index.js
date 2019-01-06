@@ -29,15 +29,34 @@ if (process.getuid() != 0) {
     args.unshift(bin);
     bin = 'sudo';
 }
-//l(bin, args);
-//process.exit();
 
 var proc = child.spawn(bin, args, {
     shell: true
 });
 proc.stdout.on('data', function(out) {
     out = out.toString();
-    l('out>> ', out);
+    startedProcesses = [];
+    endedProcesses = [];
+    _.each(out.split("\n"), function(o) {
+        pR = {};
+        l('out>> ', out);
+        var spaceOut = out.split(' ');
+        if (spaceOut[0][spaceOut[0].length - 1] == '+') {
+            pR.type = 'start';
+            pR.user = spaceOut[1].replace('<', '').replace('>', '');
+            pR.cmd = spaceOut.slice(2, spaceOut.length).join(' ').trim();
+        } else if (spaceOut[0][spaceOut[0].length - 1] == '-') {
+            pR.type = 'end';
+            pR.exec = spaceOut[1];
+            pR.code = spaceOut[3].split('=')[1];
+            pR.time = spaceOut[4].split('=')[1].trim();
+        } else {
+            l('Unknown Output: ' + out);
+            process.exit(1)
+        }
+        pR.pid = out.slice(0, spaceOut[0].length - 1);
+        l(pR);
+    });
 });
 proc.stderr.on('data', function(err) {
     err = err.toString();
