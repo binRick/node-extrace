@@ -5,11 +5,45 @@ var async = require('async'),
     _ = require('underscore'),
     os = require('os'),
     fs = require('fs'),
+    pj = require('prettyjson'),
     c = require('chalk'),
     child = require('child_process'),
-    args = ['-dfltu'],
+    args = ['-dfltue'],
     bin = 'extrace',
-    found = false;
+    found = false,
+    mysql = require('mysql'),
+    connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'extrace'
+    }),
+    debug = process.env.DEBUG || '';
+
+connection.connect();
+
+
+var handleInsert = function(ex, _cb) {
+    //delete ex.line;
+    if (ex.type == 'start') {
+        delete ex.type;
+        var query = connection.query('INSERT INTO execs SET ?', ex, function(error, results, fields) {
+            _cb(error);
+            l(c.yellow('Inserted Row #') + c.black.bgWhite(results.insertId) + c.yellow('!'));
+        });
+
+    } else if (ex.type == 'end') {
+        delete ex.type;
+        var query = connection.query('UPDATE execs SET exit_code = ?, time = ?, ended_ts = NOW() where pid = ?', [ex.code, ex.time, ex.pid], function(error, results, fields) {
+            _cb(error);
+            l(c.green('Updated Row #') + c.black.bgWhite(ex.pid) + c.green('!'));
+        });
+    } else {
+        l(ex);
+        process.exit();
+    }
+
+};
 
 _.each(process.env.PATH.split(':'), function(d) {
     try {
@@ -30,6 +64,11 @@ if (process.getuid() != 0) {
     bin = 'sudo';
 }
 
+if (debug) {
+    l(bin, args.join(" "));
+
+}
+
 var proc = child.spawn(bin, args, {
     shell: true
 });
@@ -37,25 +76,46 @@ proc.stdout.on('data', function(out) {
     out = out.toString();
     startedProcesses = [];
     endedProcesses = [];
-    _.each(out.split("\n"), function(o) {
+    var outLines = out.split("\n").filter(function(o) {
+        return o;
+    });
+    _.each(outLines, function(o) {
         pR = {};
-        l('out>> ', out);
-        var spaceOut = out.split(' ');
+        //   l('out>> ', o);
+        var spaceOut = o.split(' ');
         if (spaceOut[0][spaceOut[0].length - 1] == '+') {
             pR.type = 'start';
             pR.user = spaceOut[1].replace('<', '').replace('>', '');
             pR.cmd = spaceOut.slice(2, spaceOut.length).join(' ').trim();
+
+            var te = pR.cmd.split('   ');
+            var pRenv1 = te[te.length - 1].split(' ');
+            pR.env = {};
+            _.each(pRenv1, function(pe) {
+                pej = pe.split('=');
+                pR.env[pej[0]] = pej[1];
+            });
+            pR.env = JSON.stringify(pR.env);
+
+            pR.cmd = te.slice(0, te.length - 1).join(' ');
+            pR.cwd = pR.cmd.split(' % ')[0];
+            pR.cmd = pR.cmd.replace(pR.cwd + ' % ', '');
+            pR.line = o;
         } else if (spaceOut[0][spaceOut[0].length - 1] == '-') {
             pR.type = 'end';
             pR.exec = spaceOut[1];
             pR.code = spaceOut[3].split('=')[1];
             pR.time = spaceOut[4].split('=')[1].trim();
         } else {
-            l('Unknown Output: ' + out);
+            l('Unknown Output: ' + o);
             process.exit(1)
         }
-        pR.pid = out.slice(0, spaceOut[0].length - 1);
-        l(pR);
+        pR.pid = o.slice(0, spaceOut[0].length - 1);
+        if (debug)
+            l(pj.render(pR) + "\n");
+        handleInsert(pR, function(e) {
+            if (e) throw e;
+        });
     });
 });
 proc.stderr.on('data', function(err) {
