@@ -24,6 +24,13 @@ connection.connect();
 
 
 var handleInsert = function(ex, _cb) {
+    /*
+    if (!Object.keys(ex).includes('time'))
+        ex.time = '0';
+    if (!Object.keys(ex).includes('username'))
+        ex.username = 'UNKNOWN';
+	*/
+    if (debug) l(ex);
     //delete ex.line;
     if (ex.type == 'start') {
         delete ex.type;
@@ -81,26 +88,26 @@ proc.stdout.on('data', function(out) {
     });
     _.each(outLines, function(o) {
         pR = {};
-        //   l('out>> ', o);
+        if (debug)
+            l('out>> ', o);
         var spaceOut = o.split(' ');
         if (spaceOut[0][spaceOut[0].length - 1] == '+') {
             pR.type = 'start';
             pR.user = spaceOut[1].replace('<', '').replace('>', '');
             pR.cmd = spaceOut.slice(2, spaceOut.length).join(' ').trim();
-
-            var te = pR.cmd.split('   ');
-            var pRenv1 = te[te.length - 1].split(' ');
+            var te = pR.cmd.split('   '),
+                pRenv1 = te[te.length - 1].split(' ');
             pR.env = {};
             _.each(pRenv1, function(pe) {
                 pej = pe.split('=');
                 pR.env[pej[0]] = pej[1];
             });
             pR.env = JSON.stringify(pR.env);
-
             pR.cmd = te.slice(0, te.length - 1).join(' ');
             pR.cwd = pR.cmd.split(' % ')[0];
             pR.cmd = pR.cmd.replace(pR.cwd + ' % ', '');
-            pR.line = o;
+	    var buff = new Buffer(o);
+	    pR.line = buff.toString('base64');
         } else if (spaceOut[0][spaceOut[0].length - 1] == '-') {
             pR.type = 'end';
             pR.exec = spaceOut[1];
@@ -113,9 +120,9 @@ proc.stdout.on('data', function(out) {
         pR.pid = o.slice(0, spaceOut[0].length - 1);
         if (debug)
             l(pj.render(pR) + "\n");
-        handleInsert(pR, function(e) {
-            if (e) throw e;
-        });
+            handleInsert(pR, function(e) {
+                if (e) throw e;
+            });
     });
 });
 proc.stderr.on('data', function(err) {
