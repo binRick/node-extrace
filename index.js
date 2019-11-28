@@ -36,14 +36,16 @@ var handleInsert = function(ex, _cb) {
         delete ex.type;
         var query = connection.query('INSERT INTO execs SET ?', ex, function(error, results, fields) {
             _cb(error);
-            l(c.yellow('Inserted Row #') + c.black.bgWhite(results.insertId) + c.yellow('!'));
+            if(debug)
+                l(c.yellow('Inserted Row #') + c.black.bgWhite(results.insertId) + c.yellow('!'));
         });
 
     } else if (ex.type == 'end') {
         delete ex.type;
         var query = connection.query('UPDATE execs SET exit_code = ?, time = ?, ended_ts = NOW() where pid = ?', [ex.code, ex.time, ex.pid], function(error, results, fields) {
             _cb(error);
-            l(c.green('Updated Row #') + c.black.bgWhite(ex.pid) + c.green('!'));
+            if(debug)
+                l(c.green('Updated Row #') + c.black.bgWhite(ex.pid) + c.green('!'));
         });
     } else {
         l(ex);
