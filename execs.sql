@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS `execs`;
 CREATE TABLE `execs` (
   `id` MEDIUMINT NOT NULL AUTO_INCREMENT,
   `username` varchar(255) default NULL,
-  `cmd` varchar(255) default NULL,
+  `cmd` varchar(65530) default NULL,
   `user` varchar(255) default NULL,
   `pid` INT NOT NULL,
   `env` varchar(4096) default NULL,
@@ -13,7 +13,7 @@ CREATE TABLE `execs` (
   `exit_code` INT default NULL,
   `started_ts` timestamp NOT NULL default now(),
   `ended_ts` timestamp NULL,
-  `line` varchar(4096) NOT NULL,
+  `line` varchar(65530) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
