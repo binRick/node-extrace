@@ -3,6 +3,13 @@ set -ex
 
 git pull
 
+if [[ ! -f /usr/sbin/mysqld ]]; then
+    dnf -y install mariadb-server
+fi
+
+systemctl enable mariadb
+systemctl start mariadb
+
 if [[ ! -f /usr/bin/npm ]]; then
  (
     dnf -y install nodejs
