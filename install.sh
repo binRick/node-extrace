@@ -3,6 +3,20 @@ set -ex
 
 git pull
 
+if [[ ! -f /usr/local/bin/extrace ]]; then
+ (
+    if [ -d ~/.extrace-src ]; then 
+        rm -rf ~/.extrace-src
+    fi
+    git clone https://github.com/leahneukirchen/extrace ~/.extrace-src
+    cd ~/.extrace-src
+    make install
+ )   
+    
+fi
+
+command extrace -v
+
 npm i
 
 ./createSql.sh
