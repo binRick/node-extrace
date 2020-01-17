@@ -15,7 +15,7 @@ if [[ ! -f /usr/local/bin/extrace ]]; then
     
 fi
 
-command extrace -v
+command -v extrace
 
 npm i
 
