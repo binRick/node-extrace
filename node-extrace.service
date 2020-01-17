@@ -5,7 +5,7 @@ Description="NodeJS SQL System Call Logger"
 Type=idle
 Restart=always
 RestartPreventExitStatus=0
-ExecStart=node /root/node-extrace/index.js
+ExecStart=/root/node-extrace/index.js
 RestartSec=5s
 
 

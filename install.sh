@@ -9,6 +9,8 @@ npm i
 
 cp -prvf node-extrace.service /etc/systemd/system/.
 
+systemctl daemon-reload
+
 systemctl enable node-extrace
 
 systemctl start node-extrace
