@@ -27,7 +27,7 @@ systemctl daemon-reload
 
 systemctl enable node-extrace
 
-systemctl start node-extrace
+systemctl restart node-extrace
 
 systemctl status node-extrace
 
