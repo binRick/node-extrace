@@ -3,6 +3,15 @@ set -ex
 
 git pull
 
+if [[ ! -f /usr/bin/npm ]]; then
+ (
+    dnf -y install nodejs
+ )
+fi
+command -v npm
+command -v node
+
+
 if [[ ! -f /usr/local/bin/extrace ]]; then
  (
     if [ -d ~/.extrace-src ]; then 
