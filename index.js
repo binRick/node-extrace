@@ -128,18 +128,21 @@ proc.stdout.on('data', function(out) {
             }
             J.CG = {
              'cmds': {
-               'create': '/bin/cgcreate -a root:root -t root:root -g cpu,cpuacct,memory,pids,blkio:' + J.CG.name,
+               'create': {
+                'exec': '/bin/cgcreate',
+                'args': ['-a','root:root','-t','root:root','-g','cpu,cpuacct,memory,pids,blkio:' + J.CG.name],
+               }
                'classify': '/bin/cgclassify -g cpu,memory:' + J.CG.name + ' ' + String(pR.pid),
              },
             }
 
 
 var CGROUPS_ENABLED = false;
-var ARGS = J.CG.cmds.create.split(' ');
-                l('  CG :: Create :: Args>>', ARGS);
+                l('  CG :: Create :: Exec>>', J.CG.cmds.create.exec);
+                l('  CG :: Create :: Args>>', J.CG.cmds.create.args);
 
 if(CGROUPS_ENABLED){
-            var createProcess = child.spawn('sudo', ARGS);
+            var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
             createProcess.stderr.on('data', function(d){
                 l('  CG :: Create :: stderr>> ', d.toString());
             });
