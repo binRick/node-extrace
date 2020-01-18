@@ -1,7 +1,14 @@
 #!/bin/bash
+cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 set -ex
 
+if [[ "__NODE_EXTRACE_INSTALL" != "1" ]]; then
+    __NODE_EXTRACE_INSTALL=1 exec ${BASH_SOURCE[0]} $@
+fi
+
 git pull
+
+
 
 if [[ ! -f /usr/libexec/mysqld ]]; then
     dnf -y install mariadb-server
