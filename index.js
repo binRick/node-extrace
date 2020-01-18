@@ -134,10 +134,14 @@ proc.stdout.on('data', function(out) {
             }
 
 
+var CGROUPS_ENABLED = false;
+
+if(CGROUPS_ENABLED){
             var createProcess = child.spawn('sudo', J.CG.cmds.create.split(' '));
             createProcess.on('exit', function(code){
                 l('CG :: Create :: pid '+pR.pid+' :: code '+code);
             });
+}
 
 
 
