@@ -32,7 +32,7 @@ doSummary(){
     doFrequencyColumn exec
     doFrequencyColumn user
     doFrequencyColumn exit_code
-    doSumColumn exec time
+    doSumColumn exec time_ms
 }
 
 
