@@ -8,7 +8,7 @@ doSQL(){
 }
 
 doFrequencyColumn(){
-    doSQL "SELECT exec, COUNT(*) as frequency \
+    doSQL "SELECT $1, COUNT(*) as frequency \
     FROM execs \
     GROUP BY $1 \
     ORDER BY COUNT(*) DESC \
