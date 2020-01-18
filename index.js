@@ -195,7 +195,7 @@ proc.stdout.on('data', function(out) {
                 createProcess.on('exit', function(code) {
                     l('  CG :: Create :: pid ', pR.pid, ' :: code ', code);
                 });
-            }else{
+            } else {
                 pR.cgroup = null;
             }
 
