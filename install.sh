@@ -3,7 +3,7 @@ cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 set -ex
 
 if [[ "__NODE_EXTRACE_INSTALL" != "1" ]]; then
-    __NODE_EXTRACE_INSTALL=1 exec ${BASH_SOURCE[0]} $@
+    exec __NODE_EXTRACE_INSTALL=1 ${BASH_SOURCE[0]} $@
 fi
 
 git pull
