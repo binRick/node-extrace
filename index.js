@@ -112,13 +112,17 @@ proc.stdout.on('data', function(out) {
 	    pR.line_b64 = buff.toString('base64');
 	    pR.line = buff;
 
+        var TE_CMD = te[0].split(' ');
+
         var J = {
             'te_type': typeof(te),
 //            'te': te,
             '_PWD': te[0].split(' ')[0],
             '_EXEC': te[0].split(' ')[2],
+            '_CMD': TE_CMD.splice(2, TE_CMD.length-3);
         }
 
+        pR._cmd = J._CMD;
         pR.exec = J._EXEC;
 	    pR.json = JSON.stringify(J);
         } else if (spaceOut[0][spaceOut[0].length - 1] == '-') {
