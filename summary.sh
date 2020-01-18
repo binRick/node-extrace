@@ -18,24 +18,9 @@ doFrequencyColumn(){
 
 doSQL "select distinct exec from execs"
 
-doSQL "SELECT exec, COUNT(*) as frequency \
-FROM execs \
-GROUP BY exec \
-ORDER BY COUNT(*) DESC \
-LIMIT 5"
 
+doFrequencyColumn exec
 doFrequencyColumn user
+doFrequencyColumn exit_code
 
-
-doSQL "SELECT exit_code, COUNT(*) as frequency \
-FROM execs \
-GROUP BY exit_code \
-ORDER BY COUNT(*) DESC \
-LIMIT 5"
-
-doSQL "SELECT exit_code, COUNT(*) as frequency \
-FROM execs \
-GROUP BY exit_code \
-ORDER BY COUNT(*) DESC \
-LIMIT 5"
 
