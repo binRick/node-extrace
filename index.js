@@ -221,6 +221,7 @@ proc.stdout.on('data', function(out) {
             var CG_NAME = config.cg_prefix + String(pR.pid);
             var CG_DIR = '/sys/fs/cgroup/pids/' + CG_NAME;
 
+if(debug)
             l('CG_DIR=', CG_DIR);
             try {
                 fs.stat(CG_DIR, function(e, CG_STAT) {
