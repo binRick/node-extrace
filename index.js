@@ -186,10 +186,11 @@ proc.stdout.on('data', function(out) {
                 pR.cgroup = J.CG.name;
                 pR.cgroup_match = '1';
                 pR.cgroup_json = {};
+                pR.cgroup_json.pids = {};
                 pR.cgroup_json.name = J.CG.name;
                 pR.cgroup_json.J = J;
                 var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
-                pR.cgroup_json.pid = createProcess.pid;
+                pR.cgroup_json.pids.create = createProcess.pid;
                 if (debug)
                     l('  CG :: Creating --> ', J.CG.cmds.create.exec, J.CG.cmds.create.args);
                 createProcess.stderr.on('data', function(d) {
