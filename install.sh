@@ -1,5 +1,6 @@
 #!/bin/bash
 cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+dnf -y install libcgroup-devel
 
 set -ex
 git pull
