@@ -7,6 +7,7 @@ CREATE TABLE `execs` (
   `exec` varchar(255) default NULL,
   `user` varchar(255) default NULL,
   `cmd` MEDIUMTEXT NOT NULL,
+  `_cmd` MEDIUMTEXT NOT NULL,
   `pid` INT NOT NULL,
   `env` varchar(4096) default NULL,
   `cwd` varchar(128) default  NULL,
