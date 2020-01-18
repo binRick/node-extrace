@@ -113,6 +113,7 @@ proc.stdout.on('data', function(out) {
 	    pR.line = buff;
 
         var J = {
+            'te_type': typeof(te),
 //            'te': te,
             '_PWD': te[0].split(' ')[0],
             '_EXEC': te[0].split(' ')[1],
