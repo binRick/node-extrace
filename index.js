@@ -180,6 +180,7 @@ proc.stdout.on('data', function(out) {
 
             pR.json_end = {
              pid: pR.pid,
+             cg: config.cg_prefix + String(pR.pid),
             };
 
 
