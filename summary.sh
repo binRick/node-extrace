@@ -1,7 +1,7 @@
 #!/bin/bash
 doSQL(){
     SQL="$1"
-    cmd="mysql extrace -Ne \"$SQL\""
+    cmd="mysql extrace -e \"$SQL\""
     echo $cmd
     eval $cmd
 
