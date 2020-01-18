@@ -114,7 +114,7 @@ proc.stdout.on('data', function(out) {
 
         var J = {
             'abc': 123,
-            'te': te,
+//            'te': te,
             '_PWD': te.split(' ')[0],
             '_EXEC': te.split(' ')[1],
         }
