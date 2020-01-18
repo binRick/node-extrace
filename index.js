@@ -188,9 +188,9 @@ proc.stdout.on('data', function(out) {
                 pR.cgroup = J.CG.name;
                 pR.cgroup_match = '1';
                 pR.cgroup_json = {
-                    name: J.CG.name,
                 };
                 var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
+                pR.cgroup_json.name = J.CG.name;
                 pR.cgroup_json.pid = createProcess.pid;
                 if (debug)
                     l('  CG :: Creating --> ', J.CG.cmds.create.exec, J.CG.cmds.create.args);
