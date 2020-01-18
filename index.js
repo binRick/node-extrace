@@ -55,11 +55,19 @@ var handleInsert = function(ex, _cb) {
             ex.json_end = JSON.stringify(ex.json_end);
 
 l(ex);
-        var query = connection.query('UPDATE execs SET exit_code = ?, time = ?, ended_ts = NOW() where pid = ?', [ex.code, ex.time, ex.pid], function(error, results, fields) {
+    try{
+var SQL = 'UPDATE execs SET exit_code = ?, time = ?, ended_ts = NOW() where pid = ?';
+var VARS = [ex.code, ex.time, ex.pid];
+        var query = connection.query(SQL, VARS), function(error, results, fields) {
             _cb(error);
             if (debug)
                 l(c.green('Updated Row #') + c.black.bgWhite(ex.pid) + c.green('!'));
         });
+    }catch(err){
+            l('>>Failed to execute sql query. SQL=',SQL);
+            l('>>Failed to execute sql query. VARS=',VARS);
+            l('>>Err', err);
+    }
     } else {
         l(ex);
         process.exit();
