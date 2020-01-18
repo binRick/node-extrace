@@ -1,5 +1,4 @@
 #!/bin/bash
-cmd="mysql extrace -e \"select COUNT(*) from execs\""
+set -e
 
-echo $cmd
-eval $cmd
+./count.sh
