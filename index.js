@@ -223,9 +223,14 @@ var CG_DIR = '/sys/fs/cgroup/pids/' + CG_NAME;
 
 l('CG_DIR=', CG_DIR);
 
+fs.stat(CG_DIR, function(e,CG_STAT){
+if(e)throw e;
+
+l('  CG_STAT=', CG_STAT);
 
 
 
+});
 
             if (debug)
                 l('END>', Object.keys(pR));
