@@ -11,6 +11,9 @@ fi
 cp -prvf profile.d_node-extrace.sh /etc/profile.d/node-extrace.sh
 
 
+if [[ ! -f /usr/bin/cgcreate ]]; then
+    dnf -y install libcgroup-tools
+fi
 if [[ ! -f /usr/libexec/mysqld ]]; then
     dnf -y install mariadb-server
 fi
