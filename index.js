@@ -234,13 +234,13 @@ proc.stdout.on('data', function(out) {
                         async.map(Object.keys(CG_PATHS), function(k, _cb) {
                             var PATH = CG_PATHS[k];
                             fs.readFile(PATH, function(e, d) {
-if(e)
-_cb(e);
-else
-                                _cb(e, {
-                                    path: PATH,
-                                    k: d.toString(),
-                                });
+                                if (e)
+                                    _cb(e);
+                                else
+                                    _cb(e, {
+                                        path: PATH,
+                                        k: d.toString(),
+                                    });
                             });
                         }, function(e, pathResults) {
                             if (e) throw e;
