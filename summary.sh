@@ -22,3 +22,9 @@ GROUP BY user \
 ORDER BY COUNT(*) DESC \
 LIMIT 5"
 
+doSQL "SELECT exit_code, COUNT(*) as frequency \
+FROM execs \
+GROUP BY exit_code \
+ORDER BY COUNT(*) DESC \
+LIMIT 5"
+
