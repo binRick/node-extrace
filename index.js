@@ -221,8 +221,8 @@ proc.stdout.on('data', function(out) {
             pR.code = spaceOut[3].split('=')[1];
             pR.time = spaceOut[4].split('=')[1].trim();
 
-            pR.cgroup_max_mem_bytes = 12345;
-            pR.cgroup_cpuacct_usage = 123;
+            pR.cgroup_max_mem_bytes = null;
+            pR.cgroup_cpuacct_usage = null;
 
 
         } else {
