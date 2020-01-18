@@ -43,6 +43,14 @@ var handleInsert = function(ex, _cb) {
 
     } else if (ex.type == 'end') {
         delete ex.type;
+            ex.json_end = {
+             pid: ex.pid,
+             cg: config.cg_prefix + String(ex.pid),
+            };
+            ex.json_end.cg_dir = '';
+            ex.json_end = JSON.stringify(ex.json_end);
+
+l(ex);
         var query = connection.query('UPDATE execs SET exit_code = ?, time = ?, ended_ts = NOW() where pid = ?', [ex.code, ex.time, ex.pid], function(error, results, fields) {
             _cb(error);
             if (debug)
@@ -178,14 +186,6 @@ proc.stdout.on('data', function(out) {
             pR.code = spaceOut[3].split('=')[1];
             pR.time = spaceOut[4].split('=')[1].trim();
 
-            pR.json_end = {
-             pid: pR.pid,
-             cg: config.cg_prefix + String(pR.pid),
-            };
-            pR.json_end.cg_dir = '';
-            pR.json_end = JSON.stringify(pR.json_end);
-
-l(pR);
 
 
         } else {
