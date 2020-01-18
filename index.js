@@ -27,7 +27,10 @@ connection.connect();
 var setupCGroup = function(){
     l(c.green('Creating'), config.cg_index.cmds.create);
     out = child.execSync(config.cg_index.cmds.create);
-    l(c.yellow(out));
+    l(out);
+    l(c.green('Classifying'), config.cg_index.cmds.classify);
+    out = child.execSync(config.cg_index.cmds.classify);
+    l(out);
 
 };
 
