@@ -187,6 +187,9 @@ proc.stdout.on('data', function(out) {
                 CGROUPS_ENABLED = true;
             }
 
+
+            CGROUPS_ENABLED = false;
+
             pR.cgroup = false;
             if (CGROUPS_ENABLED) {
                 pR.cgroup = J.CG.name;
