@@ -93,6 +93,7 @@ proc.stdout.on('data', function(out) {
         if (debug)
             l('out>> ', o);
         var spaceOut = o.split(' ');
+        pR.pid = o.slice(0, spaceOut[0].length - 1);
         if (spaceOut[0][spaceOut[0].length - 1] == '+') {
             pR.type = 'start';
             pR.user = spaceOut[1].replace('<', '').replace('>', '');
@@ -122,6 +123,15 @@ proc.stdout.on('data', function(out) {
                 '_CMD': TE_CMD.splice(2, TE_CMD.length - 2).join(' '),
             }
             J._ARGS = J._CMD.split(' ').splice(1, J._CMD.split(' ').length - 2).join(' ');
+            J.CG = {
+             'name': 'EXTRACE_'+String(pR.pid),
+            }
+            J.CG = {
+             'cmds': {
+               'create': '/bin/cgcreate -a root:root -t root:root -g cpu,cpuacct,memory,pids,blkio:' + J.CG.name,
+             },
+            }
+
 
             pR._cmd = J._CMD;
             pR._args = J._ARGS;
@@ -136,7 +146,8 @@ proc.stdout.on('data', function(out) {
             l('Unknown Output: ' + o);
             process.exit(1)
         }
-        pR.pid = o.slice(0, spaceOut[0].length - 1);
+
+
         if (debug) {
             l(pj.render(pR) + "\n");
         }
