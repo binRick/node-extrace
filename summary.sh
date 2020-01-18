@@ -13,7 +13,7 @@ doSumColumn(){
     FROM execs \
     GROUP BY $1 \
     ORDER BY \\\`$3\\\` DESC \
-    LIMIT 5"
+    LIMIT $QTY"
     echo
 }
 doFrequencyColumn(){
@@ -22,17 +22,17 @@ doFrequencyColumn(){
     FROM execs \
     GROUP BY $1 \
     ORDER BY frequency DESC \
-    LIMIT 5"
+    LIMIT $QTY"
     echo
 }
 
 doSummary(){
     clear
     doSQL "select distinct exec from execs"
-    doFrequencyColumn exec
-    doFrequencyColumn user
-    doFrequencyColumn exit_code
-    doSumColumn exec time_ms "Total Time"
+    doFrequencyColumn exec 10
+    doFrequencyColumn user 5
+    doFrequencyColumn exit_code 10
+    doSumColumn exec time_ms "Total Time" 15
 }
 
 
