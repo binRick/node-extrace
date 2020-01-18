@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS `execs`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `execs` (
   `id` MEDIUMINT NOT NULL AUTO_INCREMENT,
-  `json` MEDIUMTEXT NOT NULL,
-  `json_end` MEDIUMTEXT NOT NULL,
+  `json` MEDIUMTEXT default NULL,
+  `json_end` MEDIUMTEXT default NULL,
   `exec` varchar(255) default NULL,
   `exec_name` varchar(255) default NULL,
   `user` varchar(255) default NULL,
