@@ -241,7 +241,8 @@ proc.stdout.on('data', function(out) {
 });
 proc.stderr.on('data', function(err) {
     err = err.toString();
-    l('err>> ', err);
+    if(debug)
+        l('err>> ', err);
 });
 
 proc.on('exit', function(code) {
