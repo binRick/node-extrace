@@ -115,6 +115,8 @@ proc.stdout.on('data', function(out) {
         var J = {
             'abc': 123,
             'te': te,
+            '_PWD': te.split(' ')[0],
+            '_EXEC': te.split(' ')[1],
         }
 
 	    pR.json = JSON.stringify(J);
