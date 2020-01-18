@@ -127,7 +127,7 @@ proc.stdout.on('data', function(out) {
             J._EXEC_NAME_SPLIT = J._EXEC.split('/');
             J._EXEC_NAME = J._EXEC_NAME_SPLIT[J._EXEC_NAME_SPLIT.length - 1];
             J.CG = {
-                'name': 'EXTRACE_' + String(pR.pid),
+                'name': config.cg_prefix + String(pR.pid),
             }
             J.CG = {
                 'cmds': {
@@ -147,7 +147,6 @@ proc.stdout.on('data', function(out) {
 
             if (config.cg_execs.includes(J._EXEC_NAME)) {
                 CGROUPS_ENABLED = true;
-
             }
 
             if (CGROUPS_ENABLED) {
