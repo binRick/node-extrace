@@ -137,18 +137,20 @@ proc.stdout.on('data', function(out) {
 var CGROUPS_ENABLED = true;
 
 if(CGROUPS_ENABLED){
-            var createProcess = child.spawn('sudo', J.CG.cmds.create.split(' '));
+var ARGS = J.CG.cmds.create.split(' ');
+                l('  CG :: Create :: Args>>', ARGS);
+            var createProcess = child.spawn('sudo', ARGS);
             createProcess.stderr.on('data', function(d){
-                l('  CG :: Create :: stderr>> '+d.toString());
+                l('  CG :: Create :: stderr>> ', d.toString());
             });
             createProcess.stdout.on('data', function(d){
-                l('  CG :: Create :: stdout>> '+d.toString());
+                l('  CG :: Create :: stdout>> ', d.toString());
             });
             createProcess.on('error', function(code){
-                l('  CG :: Create :: pid '+pR.pid+' :: error '+code);
+                l('  CG :: Create :: pid ', pR.pid, ' :: error ', code);
             });
             createProcess.on('exit', function(code){
-                l('  CG :: Create :: pid '+pR.pid+' :: code '+code);
+                l('  CG :: Create :: pid ', pR.pid, ' :: code ', code);
             });
 }
 
