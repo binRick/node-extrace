@@ -2,7 +2,7 @@
 cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 env|grep __NODE
-if [[ "__NODE_EXTRACE_INSTALL" != "1" ]]; then
+if [[ "$__NODE_EXTRACE_INSTALL" != "1" ]]; then
     export __NODE_EXTRACE_INSTALL=1 
     exec ${BASH_SOURCE[0]} $@
 fi
