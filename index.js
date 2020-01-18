@@ -175,7 +175,7 @@ proc.stdout.on('data', function(out) {
                 CGROUPS_ENABLED = true;
             }
 
-                pR.cgroup = false;
+            pR.cgroup = false;
             if (CGROUPS_ENABLED) {
                 pR.cgroup = J.CG.name;
                 pR.cgroup_match = '1';
@@ -218,8 +218,8 @@ proc.stdout.on('data', function(out) {
             pR.cgroup_max_mem_bytes = null;
             pR.cgroup_cpuacct_usage = null;
 
-if(debug)
-l('END>', Object.keys(pR));
+            if (debug)
+                l('END>', Object.keys(pR));
 
 
 
