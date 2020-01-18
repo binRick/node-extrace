@@ -67,8 +67,8 @@ var handleInsert = function(ex, _cb) {
 
         //l('END>', ex);
         try {
-            var SQL = 'UPDATE execs SET exit_code = ?, time = ?, json_end = ?, cgroup_cpuacct_usage = ?, cgroup_max_mem_bytes = ?, ended_ts = NOW() where pid = ?';
-            var VARS = [ex.code, ex.time, ex.json_end, ex.cgroup_cpuacct_usage, ex.cgroup_max_mem_bytes, ex.pid];
+            var SQL = 'UPDATE execs SET exit_code = ?, time = ?, time_ms = ?, json_end = ?, cgroup_cpuacct_usage = ?, cgroup_max_mem_bytes = ?, ended_ts = NOW() where pid = ?';
+            var VARS = [ex.code, ex.time, ex.time_ms, ex.json_end, ex.cgroup_cpuacct_usage, ex.cgroup_max_mem_bytes, ex.pid];
             var query = connection.query(SQL, VARS, function(error, results, fields) {
                 //l(error);
                 if (debug)
@@ -214,6 +214,13 @@ proc.stdout.on('data', function(out) {
             pR.exec = spaceOut[1];
             pR.code = spaceOut[3].split('=')[1];
             pR.time = spaceOut[4].split('=')[1].trim();
+
+if(pR.time[pR.time.length-1] == 's'){
+pR.time_ms = parseInt(parseFloat(pR.time.replace('s','')) * 1000);
+
+}else{
+pR.time_ms = null;
+}
 
             pR.cgroup_max_mem_bytes = null;
             pR.cgroup_cpuacct_usage = null;
