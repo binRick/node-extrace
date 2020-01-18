@@ -231,13 +231,15 @@ proc.stdout.on('data', function(out) {
                         };
                         l('  CG_PATHS=', CG_STAT);
                         l('  CG_PATHS=', CG_PATHS);
-                        async.map(Object.keys(CG_PATHS), function(k, _cb){
-var v = 12345;
-_cb(null, {k:v});
-                        },function(e,pathResults){
-if(e)throw e;
-                        l('     pathResults=', pathResults);
-    });
+                        async.map(Object.keys(CG_PATHS), function(k, _cb) {
+                            var v = 12345;
+                            _cb(null, {
+                                k: v
+                            });
+                        }, function(e, pathResults) {
+                            if (e) throw e;
+                            l('     pathResults=', pathResults);
+                        });
 
 
                     }
