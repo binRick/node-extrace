@@ -224,6 +224,10 @@ proc.stdout.on('data', function(out) {
             pR.cgroup_max_mem_bytes = null;
             pR.cgroup_cpuacct_usage = null;
 
+if(debug)
+l('END>', pR);
+
+
 
         } else {
             l('Unknown Output: ' + o);
