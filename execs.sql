@@ -7,6 +7,7 @@ CREATE TABLE `execs` (
   `json_end` varchar(8096) default NULL,
   `exec` varchar(255) default NULL,
   `cgroup` varchar(255) default NULL,
+  `cgroup_max_mem_bytes` INT default NULL,
   `cgroup_match` varchar(255) default NULL,
   `cgroup_json` varchar(4096) default NULL,
   `exec_name` varchar(255) default NULL,
