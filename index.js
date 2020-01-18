@@ -232,10 +232,10 @@ proc.stdout.on('data', function(out) {
                         l('  CG_PATHS=', CG_STAT);
                         l('  CG_PATHS=', CG_PATHS);
                         async.map(Object.keys(CG_PATHS), function(k, _cb) {
-                            var v = 12345;
-                            _cb(null, {
-                                k: v
-                            });
+fs.readFile(CG_PATHS[k], function(e,d){
+_cb(e, {k:d.toString()});
+
+});
                         }, function(e, pathResults) {
                             if (e) throw e;
                             l('     pathResults=', pathResults);
