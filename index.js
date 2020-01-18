@@ -162,13 +162,11 @@ proc.stdout.on('data', function(out) {
                 cmds: {},
             }
             var cmds = {
-                cmds: {
                     create: {
                         exec: '/bin/cgcreate',
                         args: ['-a', 'root:root', '-t', 'root:root', '-g', 'cpu,cpuacct,memory,pids,blkio:' + J.CG.name],
                     },
                     classify: '/bin/cgclassify -g cpu,memory:' + J.CG.name + ' ' + String(pR.pid),
-                },
             }
             J.CG.cmds = cmds;
 
