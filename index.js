@@ -208,7 +208,6 @@ proc.stdout.on('data', function(out) {
                 pR.cgroup = null;
                 pR.cgroup_match = '0';
                 pR.cgroup_json = {
-                    abc: 123
                 };
             }
             pR.cgroup_json = JSON.stringify(pR.cgroup_json);
