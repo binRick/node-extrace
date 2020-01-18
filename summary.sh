@@ -6,10 +6,19 @@ doSQL(){
     eval $cmd
 
 }
+
+
 doSQL "select distinct exec from execs"
 
 doSQL "SELECT exec, COUNT(*) as frequency \
 FROM execs \
 GROUP BY exec \
 ORDER BY COUNT(*) DESC \
-LIMIT 25"
+LIMIT 5"
+
+doSQL "SELECT user, COUNT(*) as frequency \
+FROM execs \
+GROUP BY user \
+ORDER BY COUNT(*) DESC \
+LIMIT 5"
+
