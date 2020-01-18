@@ -161,11 +161,11 @@ proc.stdout.on('data', function(out) {
                 name: config.cg_prefix + String(pR.pid),
             }
             J.CG.cmds = {
-                    create: {
-                        exec: '/bin/cgcreate',
-                        args: ['-a', 'root:root', '-t', 'root:root', '-g', 'cpu,cpuacct,memory,pids,blkio:' + J.CG.name],
-                    },
-                    classify: '/bin/cgclassify -g cpu,memory:' + J.CG.name + ' ' + String(pR.pid),
+                create: {
+                    exec: '/bin/cgcreate',
+                    args: ['-a', 'root:root', '-t', 'root:root', '-g', 'cpu,cpuacct,memory,pids,blkio:' + J.CG.name],
+                },
+                classify: '/bin/cgclassify -g cpu,memory:' + J.CG.name + ' ' + String(pR.pid),
             }
 
 
@@ -221,8 +221,8 @@ proc.stdout.on('data', function(out) {
             pR.code = spaceOut[3].split('=')[1];
             pR.time = spaceOut[4].split('=')[1].trim();
 
-pR.cgroup_max_mem_bytes = 12345;
-pR.cgroup_cpuacct_usage = 123;
+            pR.cgroup_max_mem_bytes = 12345;
+            pR.cgroup_cpuacct_usage = 123;
 
 
         } else {
