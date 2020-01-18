@@ -21,7 +21,7 @@ systemctl start mariadb
 if [[ ! -f /usr/local/bin/node ]]; then
  set -ex
  dnf -y install nodejs npm
- if [[ ! -f /usr/bin/n ]]; then
+ if [[ ! -f /usr/local/bin/n ]]; then
      npm i n -g
  fi
  /usr/local/bin/n --version
