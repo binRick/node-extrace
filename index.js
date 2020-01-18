@@ -225,7 +225,15 @@ proc.stdout.on('data', function(out) {
 try{
             fs.stat(CG_DIR, function(e, CG_STAT) {
                 if (!e){
-                l('  CG_STAT=', CG_STAT);
+
+        CG_PATHS = {
+            cpu_usage: '/sys/fs/cgroup/cpuacct/' + CG_NAME + '/cpuacct.usage',
+            max_mem_usage_bytes: '/sys/fs/cgroup/memory/' + CG_NAME + '/memory.max_usage_in_bytes',
+        };
+                l('  CG_PATHS=', CG_STAT);
+                l('  CG_PATHS=', CG_PATHS);
+
+
 }
             });
 }catch(e){
