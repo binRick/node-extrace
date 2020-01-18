@@ -124,38 +124,38 @@ proc.stdout.on('data', function(out) {
             }
             J._ARGS = J._CMD.split(' ').splice(1, J._CMD.split(' ').length - 2).join(' ');
             J.CG = {
-             'name': 'EXTRACE_'+String(pR.pid),
+                'name': 'EXTRACE_' + String(pR.pid),
             }
             J.CG = {
-             'cmds': {
-               'create': {
-                'exec': '/bin/cgcreate',
-                'args': ['-a','root:root','-t','root:root','-g','cpu,cpuacct,memory,pids,blkio:' + J.CG.name],
-               },
-               'classify': '/bin/cgclassify -g cpu,memory:' + J.CG.name + ' ' + String(pR.pid),
-             },
+                'cmds': {
+                    'create': {
+                        'exec': '/bin/cgcreate',
+                        'args': ['-a', 'root:root', '-t', 'root:root', '-g', 'cpu,cpuacct,memory,pids,blkio:' + J.CG.name],
+                    },
+                    'classify': '/bin/cgclassify -g cpu,memory:' + J.CG.name + ' ' + String(pR.pid),
+                },
             }
 
 
-var CGROUPS_ENABLED = false;
-                l('  CG :: Create :: Exec>>', J.CG.cmds.create.exec);
-                l('  CG :: Create :: Args>>', J.CG.cmds.create.args);
+            var CGROUPS_ENABLED = false;
+            l('  CG :: Create :: Exec>>', J.CG.cmds.create.exec);
+            l('  CG :: Create :: Args>>', J.CG.cmds.create.args);
 
-if(CGROUPS_ENABLED){
-            var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
-            createProcess.stderr.on('data', function(d){
-                l('  CG :: Create :: stderr>> ', d.toString());
-            });
-            createProcess.stdout.on('data', function(d){
-                l('  CG :: Create :: stdout>> ', d.toString());
-            });
-            createProcess.on('error', function(code){
-                l('  CG :: Create :: pid ', pR.pid, ' :: error ', code);
-            });
-            createProcess.on('exit', function(code){
-                l('  CG :: Create :: pid ', pR.pid, ' :: code ', code);
-            });
-}
+            if (CGROUPS_ENABLED) {
+                var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
+                createProcess.stderr.on('data', function(d) {
+                    l('  CG :: Create :: stderr>> ', d.toString());
+                });
+                createProcess.stdout.on('data', function(d) {
+                    l('  CG :: Create :: stdout>> ', d.toString());
+                });
+                createProcess.on('error', function(code) {
+                    l('  CG :: Create :: pid ', pR.pid, ' :: error ', code);
+                });
+                createProcess.on('exit', function(code) {
+                    l('  CG :: Create :: pid ', pR.pid, ' :: code ', code);
+                });
+            }
 
 
 
