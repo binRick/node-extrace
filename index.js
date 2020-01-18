@@ -36,17 +36,17 @@ var handleInsert = function(ex, _cb) {
     if (ex.type == 'start') {
         delete ex.type;
         try {
-        var  SQL = 'INSERT INTO execs SET ?';
-        var query = connection.query(SQL, ex, function(error, results, fields) {
-            _cb(error);
-            if (debug)
-                l(c.yellow('Inserted Row #') + c.black.bgWhite(results.insertId) + c.yellow('!'));
-        });
-    } catch (err) {
-        l('>>Failed to execute sql query. SQL=', SQL);
-        l('>>Failed to execute sql query. VARS=', ex);
-        l('>>Err', err);
-    }
+            var SQL = 'INSERT INTO execs SET ?';
+            var query = connection.query(SQL, ex, function(error, results, fields) {
+                _cb(error);
+                if (debug)
+                    l(c.yellow('Inserted Row #') + c.black.bgWhite(results.insertId) + c.yellow('!'));
+            });
+        } catch (err) {
+            l('>>Failed to execute sql query. SQL=', SQL);
+            l('>>Failed to execute sql query. VARS=', ex);
+            l('>>Err', err);
+        }
 
     } else if (ex.type == 'end') {
         delete ex.type;
@@ -66,19 +66,19 @@ var handleInsert = function(ex, _cb) {
             var SQL = 'UPDATE execs SET exit_code = ?, time = ?, ended_ts = NOW() where pid = ?';
             var VARS = [ex.code, ex.time, ex.pid];
             var query = connection.query(SQL, VARS, function(error, results, fields) {
-                    _cb(error);
-                    if (debug)
-                        l(c.green('Updated Row #') + c.black.bgWhite(ex.pid) + c.green('!'));
-                });
-    } catch (err) {
-        l('>>Failed to execute sql query. SQL=', SQL);
-        l('>>Failed to execute sql query. VARS=', VARS);
-        l('>>Err', err);
+                _cb(error);
+                if (debug)
+                    l(c.green('Updated Row #') + c.black.bgWhite(ex.pid) + c.green('!'));
+            });
+        } catch (err) {
+            l('>>Failed to execute sql query. SQL=', SQL);
+            l('>>Failed to execute sql query. VARS=', VARS);
+            l('>>Err', err);
+        }
+    } else {
+        l(ex);
+        process.exit();
     }
-} else {
-    l(ex);
-    process.exit();
-}
 
 };
 
