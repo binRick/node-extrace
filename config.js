@@ -1,5 +1,6 @@
 module.exports = {
-    'cg_execs': [
+    cg_prefix: 'EXTRACE_',
+    cg_execs: [
         'sed',
         'ls',
         'pwd',
