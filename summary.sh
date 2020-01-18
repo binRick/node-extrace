@@ -9,10 +9,10 @@ doSQL(){
 
 doSumColumn(){
     echo "$1 $2 Sum:"
-    doSQL "SELECT $1, SUM($2) as total_time \
+    doSQL "SELECT $1, SUM($2) as $3 \
     FROM execs \
     GROUP BY $1 \
-    ORDER BY total_time DESC \
+    ORDER BY $3 DESC \
     LIMIT 5"
     echo
 }
@@ -32,7 +32,7 @@ doSummary(){
     doFrequencyColumn exec
     doFrequencyColumn user
     doFrequencyColumn exit_code
-    doSumColumn exec time_ms
+    doSumColumn exec time_ms "Total Time"
 }
 
 
