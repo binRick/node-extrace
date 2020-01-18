@@ -17,6 +17,7 @@ CREATE TABLE `execs` (
   `_cmd` MEDIUMTEXT NOT NULL,
   `_args` MEDIUMTEXT NOT NULL,
   `pid` INT NOT NULL,
+  `ppid` INT NOT NULL,
   `env` varchar(4096) default NULL,
   `cwd` varchar(128) default  NULL,
   `exit_code` INT default NULL,
