@@ -119,6 +119,7 @@ proc.stdout.on('data', function(out) {
             '_EXEC': te[0].split(' ')[2],
         }
 
+        pR.exec = J._EXEC;
 	    pR.json = JSON.stringify(J);
         } else if (spaceOut[0][spaceOut[0].length - 1] == '-') {
             pR.type = 'end';

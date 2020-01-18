@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS `execs`;
 CREATE TABLE `execs` (
   `id` MEDIUMINT NOT NULL AUTO_INCREMENT,
   `json` varchar(4096) default '{}',
+  `exec` varchar(255) default NULL,
   `user` varchar(255) default NULL,
   `cmd` MEDIUMTEXT NOT NULL,
   `pid` INT NOT NULL,
