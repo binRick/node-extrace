@@ -6,6 +6,7 @@ CREATE TABLE `execs` (
   `json` varchar(4096) default '{}',
   `json_end` varchar(32096) default '{}',
   `exec` varchar(255) default NULL,
+  `exec_name` varchar(255) default NULL,
   `user` varchar(255) default NULL,
   `cmd` MEDIUMTEXT NOT NULL,
   `_cmd` MEDIUMTEXT NOT NULL,

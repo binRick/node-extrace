@@ -67,7 +67,7 @@ var handleInsert = function(ex, _cb) {
         l(ex);
         try {
             var SQL = 'UPDATE execs SET exit_code = ?, time = ?, ended_ts = NOW(), json_end = ? where pid = ?';
-            var VARS = [ex.code, ex.time, ex.pid, json_end];
+            var VARS = [ex.code, ex.time, ex.pid, ex.json_end];
             var query = connection.query(SQL, VARS, function(error, results, fields) {
                 _c(error);
                 if (debug)
