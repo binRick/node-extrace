@@ -4,5 +4,6 @@ module.exports = {
         'ls',
         'cut',
         'grep',
+        'bash',
     ],
 };
