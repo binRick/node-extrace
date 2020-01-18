@@ -170,18 +170,12 @@ proc.stdout.on('data', function(out) {
 
 
             var CGROUPS_ENABLED = false;
-            //l('  CG :: Create :: Exec>>', J.CG.cmds.create.exec);
-            //l('  CG :: Create :: Args>>', J.CG.cmds.create.args);
-
-
-
-            //l(config.cg_execs,'includes', J._EXEC_NAME,':', config.cg_execs.includes(J._EXEC_NAME));
-
 
             if (config.cg_execs.includes(J._EXEC_NAME)) {
                 CGROUPS_ENABLED = true;
             }
 
+                pR.cgroup = false;
             if (CGROUPS_ENABLED) {
                 pR.cgroup = J.CG.name;
                 pR.cgroup_match = '1';
