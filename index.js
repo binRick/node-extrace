@@ -124,6 +124,7 @@ proc.stdout.on('data', function(out) {
         }
 
         pR._cmd = J._CMD;
+        pR._args = J._ARGS;
         pR.exec = J._EXEC;
 	    pR.json = JSON.stringify(J);
         } else if (spaceOut[0][spaceOut[0].length - 1] == '-') {
