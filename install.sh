@@ -41,9 +41,4 @@ cp -prvf node-extrace.service /etc/systemd/system/.
 
 systemctl daemon-reload
 
-systemctl enable node-extrace
-
-systemctl restart node-extrace
-
-systemctl status node-extrace
-
+./start.sh
