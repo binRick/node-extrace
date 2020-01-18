@@ -46,11 +46,11 @@ var handleInsert = function(ex, _cb) {
             ex.json_end = {
              pid: ex.pid,
              cg: config.cg_prefix + String(ex.pid),
-             cg_paths: {},
+  //           cg_paths: {},
             };
 
-            ex.json_end.cg_paths.cpuacct = '/sys/fs/cgroup/cpuacct/'+ex.json_end.cg+'/cpuacct.usage';
-            ex.json_end.cg_paths.max_mem_bytes = '/sys/fs/cgroup/memory/'+ex.json_end.cg+'/memory.max_usage_in_bytes';
+//            ex.json_end.cg_paths.cpuacct = '/sys/fs/cgroup/cpuacct/'+ex.json_end.cg+'/cpuacct.usage';
+//            ex.json_end.cg_paths.max_mem_bytes = '/sys/fs/cgroup/memory/'+ex.json_end.cg+'/memory.max_usage_in_bytes';
 
             ex.json_end = JSON.stringify(ex.json_end);
 
