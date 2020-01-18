@@ -23,8 +23,8 @@ if [[ ! -f /usr/local/bin/node ]]; then
  dnf -y install nodejs npm
  if [[ ! -f /usr/bin/n ]]; then
      npm i n -g
-     /usr/local/bin/n --version
  fi
+ /usr/local/bin/n --version
  n stable
  dnf -y remove nodejs npm
 fi
