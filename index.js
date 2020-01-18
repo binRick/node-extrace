@@ -138,8 +138,17 @@ var CGROUPS_ENABLED = false;
 
 if(CGROUPS_ENABLED){
             var createProcess = child.spawn('sudo', J.CG.cmds.create.split(' '));
+            createProcess.stderr.on('data', function(d){
+                l('  CG :: Create :: stderr>> '+d.toString());
+            });
+            createProcess.stdout.on('data', function(d){
+                l('  CG :: Create :: stdout>> '+d.toString());
+            });
+            createProcess.on('error', function(code){
+                l('  CG :: Create :: pid '+pR.pid+' :: error '+code);
+            });
             createProcess.on('exit', function(code){
-                l('CG :: Create :: pid '+pR.pid+' :: code '+code);
+                l('  CG :: Create :: pid '+pR.pid+' :: code '+code);
             });
 }
 
