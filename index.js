@@ -158,17 +158,19 @@ proc.stdout.on('data', function(out) {
             J._EXEC_NAME_SPLIT = J._EXEC.split('/');
             J._EXEC_NAME = J._EXEC_NAME_SPLIT[J._EXEC_NAME_SPLIT.length - 1];
             J.CG = {
-                'name': config.cg_prefix + String(pR.pid),
+                name: config.cg_prefix + String(pR.pid),
+                cmds: {},
             }
-            J.CG.cmds = {
-                'cmds': {
-                    'create': {
-                        'exec': '/bin/cgcreate',
-                        'args': ['-a', 'root:root', '-t', 'root:root', '-g', 'cpu,cpuacct,memory,pids,blkio:' + J.CG.name],
+            var cmds = {
+                cmds: {
+                    create: {
+                        exec: '/bin/cgcreate',
+                        args: ['-a', 'root:root', '-t', 'root:root', '-g', 'cpu,cpuacct,memory,pids,blkio:' + J.CG.name],
                     },
-                    'classify': '/bin/cgclassify -g cpu,memory:' + J.CG.name + ' ' + String(pR.pid),
+                    classify: '/bin/cgclassify -g cpu,memory:' + J.CG.name + ' ' + String(pR.pid),
                 },
             }
+            J.CG.cmds = cmds;
 
 
             var CGROUPS_ENABLED = false;
