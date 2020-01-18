@@ -125,7 +125,7 @@ proc.stdout.on('data', function(out) {
             }
             J._ARGS = J._CMD.split(' ').splice(1, J._CMD.split(' ').length - 2).join(' ');
             J._EXEC_NAME_SPLIT = J._EXEC.split('/');
-            J._EXEC_NAME = J._EXEC_NAME_SPLIT[J._EXEC_NAME_SPLIT.length-1];
+            J._EXEC_NAME = J._EXEC_NAME_SPLIT[J._EXEC_NAME_SPLIT.length - 1];
             J.CG = {
                 'name': 'EXTRACE_' + String(pR.pid),
             }
@@ -145,10 +145,10 @@ proc.stdout.on('data', function(out) {
             l('  CG :: Create :: Args>>', J.CG.cmds.create.args);
 
 
-if(config.cg_execs.includes(J._EXEC_NAME)){
-            CGROUPS_ENABLED = true;
+            if (config.cg_execs.includes(J._EXEC_NAME)) {
+                CGROUPS_ENABLED = true;
 
-}
+            }
 
             if (CGROUPS_ENABLED) {
                 var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
