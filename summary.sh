@@ -9,6 +9,7 @@ doSQL(){
 
 doSumColumn(){
     echo "$1 $2 Sum:"
+    QTY=$3
     doSQL "SELECT $1, SUM($2) as \\\`$3\\\` \
     FROM execs \
     GROUP BY $1 \
@@ -17,6 +18,7 @@ doSumColumn(){
     echo
 }
 doFrequencyColumn(){
+    QTY=$2
     echo "$1 Frequency:"
     doSQL "SELECT $1, COUNT(*) as frequency \
     FROM execs \
