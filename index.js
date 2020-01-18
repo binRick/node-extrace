@@ -232,11 +232,15 @@ proc.stdout.on('data', function(out) {
                         l('  CG_PATHS=', CG_STAT);
                         l('  CG_PATHS=', CG_PATHS);
                         async.map(Object.keys(CG_PATHS), function(k, _cb) {
-                            fs.readFile(CG_PATHS[k], function(e, d) {
+                            var PATH = CG_PATHS[k];
+                            fs.readFile(PATH, function(e, d) {
+if(e)
+_cb(e);
+else
                                 _cb(e, {
-                                    k: d.toString()
+                                    path: PATH,
+                                    k: d.toString(),
                                 });
-
                             });
                         }, function(e, pathResults) {
                             if (e) throw e;
