@@ -14,8 +14,9 @@ if [[ ! -f /usr/local/bin/node ]]; then
  if [[ ! -f /usr/bin/n ]]; then
  set -e
  (
-    dnf -y install nodejs
+    dnf -y install nodejs npm
     n stable
+    dnf -y remove nodejs npm
  )
     
  fi
