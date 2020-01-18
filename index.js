@@ -20,7 +20,7 @@ var async = require('async'),
         password: '',
         database: 'extrace'
     }),
-    debug = process.env.DEBUG || '';
+    debug = process.env.DEBUG || false;
 
 connection.connect();
 
@@ -61,16 +61,16 @@ var handleInsert = function(ex, _cb) {
 
         ex.json_end.cg_paths = {};
         ex.json_end.cg_paths.cpuacct = '/sys/fs/cgroup/cpuacct/' + ex.json_end.cg + '/cpuacct.usage';
-        ex.json_end.cg_paths.max_mem_bytes = '/sys/fs/cgroup/memory/' + ex.json_end.cg + '/memory.max_usage_in_bytes';
+        ex.json_end.cg_paths.max_mem_usage_bytes = '/sys/fs/cgroup/memory/' + ex.json_end.cg + '/memory.max_usage_in_bytes';
 
         ex.json_end = JSON.stringify(ex.json_end);
 
-        l('END>', ex);
+        //l('END>', ex);
         try {
             var SQL = 'UPDATE execs SET exit_code = ?, time = ?, json_end = ?, ended_ts = NOW() where pid = ?';
             var VARS = [ex.code, ex.time, ex.json_end, ex.pid];
             var query = connection.query(SQL, VARS, function(error, results, fields) {
-                l(error);
+                //l(error);
                 if (debug)
                     l(c.green('Updated Row #') + c.black.bgWhite(ex.pid) + c.green('!'));
             });
@@ -172,12 +172,12 @@ proc.stdout.on('data', function(out) {
 
 
             var CGROUPS_ENABLED = false;
-            l('  CG :: Create :: Exec>>', J.CG.cmds.create.exec);
-            l('  CG :: Create :: Args>>', J.CG.cmds.create.args);
+            //l('  CG :: Create :: Exec>>', J.CG.cmds.create.exec);
+            //l('  CG :: Create :: Args>>', J.CG.cmds.create.args);
 
 
 
-            l(config.cg_execs,'includes', J._EXEC_NAME,':', config.cg_execs.includes(J._EXEC_NAME));
+            //l(config.cg_execs,'includes', J._EXEC_NAME,':', config.cg_execs.includes(J._EXEC_NAME));
 
 
             if (config.cg_execs.includes(J._EXEC_NAME)) {
