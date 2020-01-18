@@ -187,6 +187,7 @@ proc.stdout.on('data', function(out) {
             if (CGROUPS_ENABLED) {
                 pR.cgroup = J.CG.name;
                 pR.cgroup_match = '1';
+pR.cgroup_json = {abc:456};
 /*
                 var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
                 l('  CG :: Creating --> ', J.CG.cmds.create.exec, J.CG.cmds.create.args);
@@ -206,7 +207,9 @@ proc.stdout.on('data', function(out) {
             } else {
                 pR.cgroup = null;
                 pR.cgroup_match = '0';
+pR.cgroup_json = {abc:123};
             }
+            pR.cgroup_json = JSON.stringify(pR.cgroup_json);
 
 
 
