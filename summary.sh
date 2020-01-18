@@ -9,7 +9,7 @@ doSQL(){
 
 doSumColumn(){
     echo "$1 $2 Sum:"
-    QTY=$3
+    QTY=$4
     doSQL "SELECT $1, SUM($2) as \\\`$3\\\` \
     FROM execs \
     GROUP BY $1 \
