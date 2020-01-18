@@ -4,6 +4,7 @@ var async = require('async'),
     l = console.log,
     _ = require('underscore'),
     os = require('os'),
+    path = require('path'),
     config = require('./config'),
     fs = require('fs'),
     pj = require('prettyjson'),
@@ -35,6 +36,8 @@ var handleInsert = function(ex, _cb) {
     //delete ex.line;
     if (ex.type == 'start') {
         delete ex.type;
+        ex.exec_name = path.basename(ex.exec);
+
         try {
             var SQL = 'INSERT INTO execs SET ?';
             var query = connection.query(SQL, ex, function(error, results, fields) {
@@ -66,7 +69,7 @@ var handleInsert = function(ex, _cb) {
             var SQL = 'UPDATE execs SET exit_code = ?, time = ?, ended_ts = NOW(), json_end = ? where pid = ?';
             var VARS = [ex.code, ex.time, ex.pid, json_end];
             var query = connection.query(SQL, VARS, function(error, results, fields) {
-                _cb(error);
+                _c(error);
                 if (debug)
                     l(c.green('Updated Row #') + c.black.bgWhite(ex.pid) + c.green('!'));
             });
