@@ -23,6 +23,7 @@ if [[ ! -f /usr/local/bin/node ]]; then
  dnf -y install nodejs npm
  if [[ ! -f /usr/local/bin/n ]]; then
      npm i n -g
+     cp $(which n) /usr/local/bin/n
  fi
  /usr/local/bin/n --version
  n stable
