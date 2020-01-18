@@ -1,5 +1,14 @@
 #!/bin/bash
 cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+cat /etc/redhat-release |grep 'release 8'  >/dev/null && {
+ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/libcgroup-devel-0.41-21.el7.x86_64.rpm;
+ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/libcgroup-0.41-21.el7.x86_64.rpm;
+ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/libcgroup-tools-0.41-21.el7.x86_64.rpm;
+ wget http://mirror.centos.org/centos/7/os/x86_64/Packages/libcgroup-pam-0.41-21.el7.x86_64.rpm;
+ rpm -Uvh libcgroup*rpm;
+}
+
 dnf -y install libcgroup-devel
 
 set -ex
