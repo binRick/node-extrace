@@ -16,12 +16,13 @@ if [[ ! -f /usr/local/bin/node ]]; then
  (
     dnf -y install nodejs
     n stable
-    /usr/local/bin/node --version
  )
     
  fi
 fi
 
+set -ex
+/usr/local/bin/node --version
 
 if [[ ! -f /usr/local/bin/extrace ]]; then
  (
