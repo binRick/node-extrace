@@ -21,8 +21,6 @@ if [[ ! -f /usr/local/bin/node ]]; then
     
  fi
 fi
-command -v npm
-command -v node
 
 
 if [[ ! -f /usr/local/bin/extrace ]]; then
