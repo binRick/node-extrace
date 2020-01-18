@@ -237,10 +237,11 @@ proc.stdout.on('data', function(out) {
                                 if (e)
                                     _cb(e);
                                 else
-                                    _cb(e, {
+                                    _cb(e, R);
+var R = {
                                         path: PATH,
-                                        k: d.toString().trim(),
-                                    });
+};
+R[k] = d.toString().trim();
                             });
                         }, function(e, pathResults) {
                             if (e) throw e;
