@@ -38,7 +38,7 @@ fi
 
 command -v extrace
 
-npm i
+/usr/local/bin/npm i
 
 ./createSql.sh
 
