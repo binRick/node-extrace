@@ -47,6 +47,7 @@ if [[ ! -f /usr/local/bin/extrace ]]; then
     cd ~/.extrace-src
     make pwait
     ./build.sh
+    make install
  )   
     
 fi
