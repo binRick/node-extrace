@@ -1,5 +1,4 @@
 #!/bin/bash
-set -ex
 
 systemctl restart node-extrace
 
