@@ -121,7 +121,7 @@ proc.stdout.on('data', function(out) {
             '_PWD': te[0].split(' ')[0],
             '_EXEC': te[0].split(' ')[2],
 //            '_CMD': 'xxx',
-            '_CMD': TE_CMD.join(' '),
+            '_CMD': TE_CMD.splice(2, TE_CMD.length-3).join(' '),
 //.splice(2, TE_CMD.length-3),
         }
 
