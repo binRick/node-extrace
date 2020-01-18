@@ -124,6 +124,8 @@ proc.stdout.on('data', function(out) {
                 '_CMD': TE_CMD.splice(2, TE_CMD.length - 2).join(' '),
             }
             J._ARGS = J._CMD.split(' ').splice(1, J._CMD.split(' ').length - 2).join(' ');
+            J._EXEC_NAME_SPLIT = J._EXEC.split('/');
+            J._EXEC_NAME = J._EXEC_NAME_SPLIT[J._EXEC_NAME_SPLIT.length-1];
             J.CG = {
                 'name': 'EXTRACE_' + String(pR.pid),
             }
@@ -141,6 +143,9 @@ proc.stdout.on('data', function(out) {
             var CGROUPS_ENABLED = false;
             l('  CG :: Create :: Exec>>', J.CG.cmds.create.exec);
             l('  CG :: Create :: Args>>', J.CG.cmds.create.args);
+
+
+if(J.CG.cmds.create.exec.splitconfig.cg_execs
 
             if (CGROUPS_ENABLED) {
                 var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
