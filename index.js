@@ -134,7 +134,7 @@ proc.stdout.on('data', function(out) {
             }
 
 
-var CGROUPS_ENABLED = true;
+var CGROUPS_ENABLED = false;
 
 if(CGROUPS_ENABLED){
 var ARGS = J.CG.cmds.create.split(' ');
