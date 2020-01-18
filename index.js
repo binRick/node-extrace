@@ -239,7 +239,7 @@ proc.stdout.on('data', function(out) {
                                 else
                                     _cb(e, {
                                         path: PATH,
-                                        k: d.toString(),
+                                        k: d.toString().trim(),
                                     });
                             });
                         }, function(e, pathResults) {
