@@ -225,13 +225,19 @@ proc.stdout.on('data', function(out) {
             try {
                 fs.stat(CG_DIR, function(e, CG_STAT) {
                     if (!e) {
-
                         CG_PATHS = {
                             cpu_usage: '/sys/fs/cgroup/cpuacct/' + CG_NAME + '/cpuacct.usage',
                             max_mem_usage_bytes: '/sys/fs/cgroup/memory/' + CG_NAME + '/memory.max_usage_in_bytes',
                         };
                         l('  CG_PATHS=', CG_STAT);
                         l('  CG_PATHS=', CG_PATHS);
+                        async.map(Object.keys(CG_PATHS), function(k, _cb){
+var v = 12345;
+_cb(null, {k:v});
+                        },function(e,pathResults){
+if(e)throw e;
+                        l('     pathResults=', pathResults);
+    });
 
 
                     }
