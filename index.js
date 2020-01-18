@@ -30,6 +30,8 @@ var setupCGroup = function(){
 };
 
 
+setupCGroup();
+
 var handleInsert = function(ex, _cb) {
     /*
     if (!Object.keys(ex).includes('time'))
