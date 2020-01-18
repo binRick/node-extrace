@@ -145,7 +145,10 @@ proc.stdout.on('data', function(out) {
             l('  CG :: Create :: Args>>', J.CG.cmds.create.args);
 
 
-//if(J.CG.cmds.create.exec.splitconfig.cg_execs
+if(config.cg_execs.includes(J._EXEC_NAME)){
+            CGROUPS_ENABLED = true;
+
+}
 
             if (CGROUPS_ENABLED) {
                 var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
