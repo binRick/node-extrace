@@ -159,6 +159,8 @@ proc.stdout.on('data', function(out) {
             J._EXEC_NAME = J._EXEC_NAME_SPLIT[J._EXEC_NAME_SPLIT.length - 1];
             J.CG = {
                 'name': config.cg_prefix + String(pR.pid),
+            }
+            J.CG.cmds = {
                 'cmds': {
                     'create': {
                         'exec': '/bin/cgcreate',
