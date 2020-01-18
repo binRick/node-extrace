@@ -46,7 +46,7 @@ if [[ ! -f /usr/local/bin/extrace ]]; then
     git clone https://github.com/binRick/extrace ~/.extrace-src
     cd ~/.extrace-src
     make pwait
-    ./build
+    ./build.sh
  )   
     
 fi
