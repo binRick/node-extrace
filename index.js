@@ -116,7 +116,7 @@ proc.stdout.on('data', function(out) {
             'te_type': typeof(te),
 //            'te': te,
             '_PWD': te[0].split(' ')[0],
-            '_EXEC': te[0].split(' ')[1],
+            '_EXEC': te[0].split(' ')[2],
         }
 
 	    pR.json = JSON.stringify(J);
