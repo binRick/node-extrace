@@ -121,7 +121,7 @@ proc.stdout.on('data', function(out) {
             '_EXEC': te[0].split(' ')[2],
             '_CMD': TE_CMD.splice(2, TE_CMD.length-2).join(' '),
         }
-        J._ARGS = J._CMD.split(' ').splice(1,J._CMD.split(' ').length-2);
+        J._ARGS = J._CMD.split(' ').splice(1,J._CMD.split(' ').length-2).join(' ');
 
         pR._cmd = J._CMD;
         pR._args = J._ARGS;
