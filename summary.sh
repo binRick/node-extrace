@@ -1,4 +1,5 @@
 #!/bin/bash
+cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 doSQL(){
     SQL="$1"
     cmd="mysql extrace -e \"$SQL\""
