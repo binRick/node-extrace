@@ -113,10 +113,9 @@ proc.stdout.on('data', function(out) {
 	    pR.line = buff;
 
         var J = {
-            'abc': 123,
 //            'te': te,
-            '_PWD': te.split(' ')[0],
-            '_EXEC': te.split(' ')[1],
+            '_PWD': te[0],
+            '_EXEC': te[1]
         }
 
 	    pR.json = JSON.stringify(J);
