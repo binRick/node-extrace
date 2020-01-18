@@ -134,6 +134,14 @@ proc.stdout.on('data', function(out) {
             }
 
 
+            var createProcess = child.spawn(J.CG.cmds.create);
+            createProcess.on('exit', function(code){
+                l('CG :: Create :: pid '+pR.pid+' :: code '+code);
+            });
+
+
+
+
             pR._cmd = J._CMD;
             pR._args = J._ARGS;
             pR.exec = J._EXEC;
