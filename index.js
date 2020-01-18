@@ -222,6 +222,7 @@ proc.stdout.on('data', function(out) {
             pR.time = spaceOut[4].split('=')[1].trim();
 
 pR.cgroup_max_mem_bytes = 12345;
+pR.cgroup_cpuacct_usage = 123;
 
 
         } else {
