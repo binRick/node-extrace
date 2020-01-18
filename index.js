@@ -215,12 +215,12 @@ proc.stdout.on('data', function(out) {
             pR.code = spaceOut[3].split('=')[1];
             pR.time = spaceOut[4].split('=')[1].trim();
 
-if(pR.time[pR.time.length-1] == 's'){
-pR.time_ms = parseInt(parseFloat(pR.time.replace('s','')) * 1000);
+            if (pR.time[pR.time.length - 1] == 's') {
+                pR.time_ms = parseInt(parseFloat(pR.time.replace('s', '')) * 1000);
 
-}else{
-pR.time_ms = null;
-}
+            } else {
+                pR.time_ms = null;
+            }
 
             pR.cgroup_max_mem_bytes = null;
             pR.cgroup_cpuacct_usage = null;
