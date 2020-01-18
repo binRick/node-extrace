@@ -222,23 +222,23 @@ proc.stdout.on('data', function(out) {
             var CG_DIR = '/sys/fs/cgroup/pids/' + CG_NAME;
 
             l('CG_DIR=', CG_DIR);
-try{
-            fs.stat(CG_DIR, function(e, CG_STAT) {
-                if (!e){
+            try {
+                fs.stat(CG_DIR, function(e, CG_STAT) {
+                    if (!e) {
 
-        CG_PATHS = {
-            cpu_usage: '/sys/fs/cgroup/cpuacct/' + CG_NAME + '/cpuacct.usage',
-            max_mem_usage_bytes: '/sys/fs/cgroup/memory/' + CG_NAME + '/memory.max_usage_in_bytes',
-        };
-                l('  CG_PATHS=', CG_STAT);
-                l('  CG_PATHS=', CG_PATHS);
+                        CG_PATHS = {
+                            cpu_usage: '/sys/fs/cgroup/cpuacct/' + CG_NAME + '/cpuacct.usage',
+                            max_mem_usage_bytes: '/sys/fs/cgroup/memory/' + CG_NAME + '/memory.max_usage_in_bytes',
+                        };
+                        l('  CG_PATHS=', CG_STAT);
+                        l('  CG_PATHS=', CG_PATHS);
 
 
-}
-            });
-}catch(e){
-//
-}
+                    }
+                });
+            } catch (e) {
+                //
+            }
 
             if (debug)
                 l('END>', Object.keys(pR));
