@@ -5,7 +5,7 @@ echo $cmd
 eval $cmd
 
 
-SQL="SELECT exec, COUNT(*) as frequency\
+SQL="SELECT exec, COUNT(*) as frequency \
 FROM execs \
 GROUP BY exec \
 ORDER BY COUNT(*) DESC \
