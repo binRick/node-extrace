@@ -143,7 +143,7 @@ proc.stdout.on('data', function(out) {
                     if (pR.cmd == '' || pR.cmd == "''") {
                         if (debug) {
                             l('  ignoring null exec..');
-
+}
                         } else {
                             handleInsert(pR, function(e) {
                                 if (e) throw e;
