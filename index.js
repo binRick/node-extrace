@@ -225,7 +225,7 @@ proc.stdout.on('data', function(out) {
             pR.cgroup_cpuacct_usage = null;
 
 if(debug)
-l('END>', pR);
+l('END>', Object.keys(pR));
 
 
 
