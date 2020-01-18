@@ -134,7 +134,7 @@ proc.stdout.on('data', function(out) {
             }
 
 
-            var createProcess = child.spawn(J.CG.cmds.create.split(' '));
+            var createProcess = child.spawn('sudo', J.CG.cmds.create.split(' '));
             createProcess.on('exit', function(code){
                 l('CG :: Create :: pid '+pR.pid+' :: code '+code);
             });
