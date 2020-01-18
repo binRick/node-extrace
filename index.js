@@ -186,6 +186,7 @@ proc.stdout.on('data', function(out) {
 
             if (CGROUPS_ENABLED) {
                 pR.cgroup = J.CG.name;
+/*
                 var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
                 l('  CG :: Creating --> ', J.CG.cmds.create.exec, J.CG.cmds.create.args);
                 createProcess.stderr.on('data', function(d) {
@@ -200,6 +201,7 @@ proc.stdout.on('data', function(out) {
                 createProcess.on('exit', function(code) {
                     l('  CG :: Create :: pid ', pR.pid, ' :: code ', code);
                 });
+*/
             } else {
                 pR.cgroup = null;
             }
