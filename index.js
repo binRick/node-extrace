@@ -25,12 +25,12 @@ var async = require('async'),
 connection.connect();
 
 var setupCGroup = function(){
+
     l(c.green('Creating'), config.cg_index.cmds.create);
-    out = child.execSync(config.cg_index.cmds.create).toString();
-    l(out);
+    child.execSync(config.cg_index.cmds.create).toString();
+
     l(c.green('Classifying'), config.cg_index.cmds.classify);
-    out = child.execSync(config.cg_index.cmds.classify).toString();
-    l(out);
+    child.execSync(config.cg_index.cmds.classify).toString();
 
 };
 
