@@ -23,6 +23,7 @@ fi
 
 set -ex
 /usr/local/bin/node --version
+/usr/local/bin/npm --version
 
 if [[ ! -f /usr/local/bin/extrace ]]; then
  (
