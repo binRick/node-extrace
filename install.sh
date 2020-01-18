@@ -41,7 +41,10 @@ cp -prvf node-extrace.service /etc/systemd/system/.
 
 systemctl daemon-reload
 
+set +e
 sleep 2
 ./stop.sh
+sleep 2
+./start.sh
 sleep 2
 ./start.sh
