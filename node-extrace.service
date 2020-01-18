@@ -5,8 +5,14 @@ Description="NodeJS SQL System Call Logger"
 Type=idle
 Restart=always
 RestartPreventExitStatus=0
-ExecStart=/root/node-extrace/index.js
-RestartSec=5s
+ExecStart=/usr/local/bin/node /root/node-extrace/index.js
+RestartSec=15s
+# Disable timeout logic and wait until process is stopped
+TimeoutStopSec=0
+
+# SIGTERM signal is used to stop the Java process
+KillSignal=SIGTERM
+
 
 
 [Install]
