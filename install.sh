@@ -8,7 +8,7 @@ if [[ "$__NODE_EXTRACE_INSTALL" != "1" ]]; then
     __NODE_EXTRACE_INSTALL=1 exec ${BASH_SOURCE[0]} $@
 fi
 
-
+cp -prvf profile.d_node-extrace.sh /etc/profile.d/node-extrace.sh
 
 
 if [[ ! -f /usr/libexec/mysqld ]]; then
