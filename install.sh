@@ -1,6 +1,5 @@
 #!/bin/bash
 cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-set -ex
 
 env|grep __NODE
 if [[ "__NODE_EXTRACE_INSTALL" != "1" ]]; then
@@ -8,6 +7,7 @@ if [[ "__NODE_EXTRACE_INSTALL" != "1" ]]; then
     exec ${BASH_SOURCE[0]} $@
 fi
 
+set -ex
 git pull
 
 
