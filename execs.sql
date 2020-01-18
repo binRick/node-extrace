@@ -13,6 +13,7 @@ CREATE TABLE `execs` (
   `exit_code` INT default NULL,
   `started_ts` timestamp NOT NULL default now(),
   `ended_ts` timestamp NULL,
+  `line_b64` MEDIUMTEXT NOT NULL,
   `line` MEDIUMTEXT NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

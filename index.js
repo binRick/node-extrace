@@ -109,7 +109,8 @@ proc.stdout.on('data', function(out) {
             pR.cwd = pR.cmd.split(' % ')[0];
             pR.cmd = pR.cmd.replace(pR.cwd + ' % ', '');
 	    var buff = new Buffer(o);
-	    pR.line = buff.toString('base64');
+	    pR.line_b64 = buff.toString('base64');
+	    pR.line = buff;
         } else if (spaceOut[0][spaceOut[0].length - 1] == '-') {
             pR.type = 'end';
             pR.exec = spaceOut[1];
