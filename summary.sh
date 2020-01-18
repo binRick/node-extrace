@@ -17,12 +17,14 @@ doFrequencyColumn(){
     echo
 }
 
+doSummary(){
+    clear
+    doSQL "select distinct exec from execs"
+    doFrequencyColumn exec
+    doFrequencyColumn user
+    doFrequencyColumn exit_code
+}
 
-doSQL "select distinct exec from execs"
 
-
-doFrequencyColumn exec
-doFrequencyColumn user
-doFrequencyColumn exit_code
-
+doSummary
 
