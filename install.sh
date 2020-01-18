@@ -19,10 +19,10 @@ systemctl enable mariadb
 systemctl start mariadb
 
 if [[ ! -f /usr/local/bin/node ]]; then
+ dnf -y install nodejs npm
  if [[ ! -f /usr/bin/n ]]; then
  set -e
  (
-    dnf -y install nodejs npm
     npm i n -g
  )
     
