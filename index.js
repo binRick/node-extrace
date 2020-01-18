@@ -43,35 +43,36 @@ var handleInsert = function(ex, _cb) {
 
     } else if (ex.type == 'end') {
         delete ex.type;
-            ex.json_end = {
-             pid: ex.pid,
-             cg: config.cg_prefix + String(ex.pid),
-  //           cg_paths: {},
-            };
+        ex.json_end = {
+            pid: ex.pid,
+            cg: config.cg_prefix + String(ex.pid),
+            //           cg_paths: {},
+        };
 
-//            ex.json_end.cg_paths.cpuacct = '/sys/fs/cgroup/cpuacct/'+ex.json_end.cg+'/cpuacct.usage';
-//            ex.json_end.cg_paths.max_mem_bytes = '/sys/fs/cgroup/memory/'+ex.json_end.cg+'/memory.max_usage_in_bytes';
+        //            ex.json_end.cg_paths.cpuacct = '/sys/fs/cgroup/cpuacct/'+ex.json_end.cg+'/cpuacct.usage';
+        //            ex.json_end.cg_paths.max_mem_bytes = '/sys/fs/cgroup/memory/'+ex.json_end.cg+'/memory.max_usage_in_bytes';
 
-            ex.json_end = JSON.stringify(ex.json_end);
+        ex.json_end = JSON.stringify(ex.json_end);
 
-l(ex);
-    try{
-var SQL = 'UPDATE execs SET exit_code = ?, time = ?, ended_ts = NOW() where pid = ?';
-var VARS = [ex.code, ex.time, ex.pid];
-        var query = connection.query(SQL, VARS), function(error, results, fields) {
-            _cb(error);
-            if (debug)
-                l(c.green('Updated Row #') + c.black.bgWhite(ex.pid) + c.green('!'));
-        });
-    }catch(err){
-            l('>>Failed to execute sql query. SQL=',SQL);
-            l('>>Failed to execute sql query. VARS=',VARS);
-            l('>>Err', err);
-    }
-    } else {
         l(ex);
-        process.exit();
+        try {
+            var SQL = 'UPDATE execs SET exit_code = ?, time = ?, ended_ts = NOW() where pid = ?';
+            var VARS = [ex.code, ex.time, ex.pid];
+            var query = connection.query(SQL, VARS),
+                function(error, results, fields) {
+                    _cb(error);
+                    if (debug)
+                        l(c.green('Updated Row #') + c.black.bgWhite(ex.pid) + c.green('!'));
+                });
+    } catch (err) {
+        l('>>Failed to execute sql query. SQL=', SQL);
+        l('>>Failed to execute sql query. VARS=', VARS);
+        l('>>Err', err);
     }
+} else {
+    l(ex);
+    process.exit();
+}
 
 };
 
