@@ -176,6 +176,10 @@ proc.stdout.on('data', function(out) {
             l('  CG :: Create :: Args>>', J.CG.cmds.create.args);
 
 
+
+            l(config.cg_execs,'includes', J._EXEC_NAME,':', config.cg_execs.includes(J._EXEC_NAME));
+
+
             if (config.cg_execs.includes(J._EXEC_NAME)) {
                 CGROUPS_ENABLED = true;
             }
