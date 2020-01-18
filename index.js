@@ -36,7 +36,7 @@ var handleInsert = function(ex, _cb) {
     //delete ex.line;
     if (ex.type == 'start') {
         delete ex.type;
-        ex.json_end = '{}';
+        //ex.json_end = '{}';
         ex.exec_name = path.posix.basename(ex.exec);
 
         try {
