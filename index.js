@@ -25,7 +25,7 @@ var async = require('async'),
 connection.connect();
 
 var setupCGroup = function(){
-    l('Creating', config.cg_index.cmds.create);
+    l(c.green('Creating'), config.cg_index.cmds.create);
 
 };
 
