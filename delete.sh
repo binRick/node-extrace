@@ -1,6 +1,8 @@
 #!/bin/bash
-cmd="mysql extrace -e \"delete from execs\""
+./count.sh
 
+
+cmd="mysql extrace -e \"delete from execs\""
 echo $cmd
 eval $cmd
 
