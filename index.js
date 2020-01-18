@@ -134,7 +134,7 @@ proc.stdout.on('data', function(out) {
             }
 
 
-var CGROUPS_ENABLED = false;
+var CGROUPS_ENABLED = true;
 
 if(CGROUPS_ENABLED){
             var createProcess = child.spawn('sudo', J.CG.cmds.create.split(' '));
