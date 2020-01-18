@@ -112,7 +112,8 @@ proc.stdout.on('data', function(out) {
 	    pR.line_b64 = buff.toString('base64');
 	    pR.line = buff;
 
-        var TE_CMD = te[0].split(' ');
+        var TE_CMD = typeof(te[0].split(' '));
+
 
         var J = {
             'te_type': typeof(te),
