@@ -188,7 +188,7 @@ proc.stdout.on('data', function(out) {
                 pR.cgroup_json = {};
                 pR.cgroup_json.pids = {};
                 pR.cgroup_json.name = J.CG.name;
-                pR.cgroup_json.J = J;
+                //pR.cgroup_json.J = J;
                 var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
                 pR.cgroup_json.pids.create = createProcess.pid;
                 if (debug)
@@ -221,6 +221,7 @@ proc.stdout.on('data', function(out) {
             pR.code = spaceOut[3].split('=')[1];
             pR.time = spaceOut[4].split('=')[1].trim();
 
+pR.cgroup_max_mem_bytes = 12345;
 
 
         } else {
