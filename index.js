@@ -187,28 +187,26 @@ proc.stdout.on('data', function(out) {
             if (CGROUPS_ENABLED) {
                 pR.cgroup = J.CG.name;
                 pR.cgroup_match = '1';
-                pR.cgroup_json = {
-                };
-                                var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
+                pR.cgroup_json = {};
+                var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
                 pR.cgroup_json.pid = createProcess.pid;
-                                l('  CG :: Creating --> ', J.CG.cmds.create.exec, J.CG.cmds.create.args);
-                                createProcess.stderr.on('data', function(d) {
-                                    l('  CG :: Create :: stderr>> ', d.toString());
-                                });
-                                createProcess.stdout.on('data', function(d) {
-                                    l('  CG :: Create :: stdout>> ', d.toString());
-                                });
-                                createProcess.on('error', function(code) {
-                                    l('  CG :: Create :: pid ', pR.pid, ' :: error ', code);
-                                });
-                                createProcess.on('exit', function(code) {
-                                    l('  CG :: Create :: pid ', pR.pid, ' :: code ', code);
-                                });
+                l('  CG :: Creating --> ', J.CG.cmds.create.exec, J.CG.cmds.create.args);
+                createProcess.stderr.on('data', function(d) {
+                    l('  CG :: Create :: stderr>> ', d.toString());
+                });
+                createProcess.stdout.on('data', function(d) {
+                    l('  CG :: Create :: stdout>> ', d.toString());
+                });
+                createProcess.on('error', function(code) {
+                    l('  CG :: Create :: pid ', pR.pid, ' :: error ', code);
+                });
+                createProcess.on('exit', function(code) {
+                    l('  CG :: Create :: pid ', pR.pid, ' :: code ', code);
+                });
             } else {
                 pR.cgroup = null;
                 pR.cgroup_match = '0';
-                pR.cgroup_json = {
-                };
+                pR.cgroup_json = {};
             }
             pR.cgroup_json = JSON.stringify(pR.cgroup_json);
 
