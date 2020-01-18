@@ -137,11 +137,18 @@ proc.stdout.on('data', function(out) {
             process.exit(1)
         }
         pR.pid = o.slice(0, spaceOut[0].length - 1);
-        if (debug)
+        if (debug){
             l(pj.render(pR) + "\n");
+        }
+if(pR.cmd=='' || pR.cmd == "''"){
+        if (debug){
+l('  ignoring null exec..');
+
+}else{
             handleInsert(pR, function(e) {
                 if (e) throw e;
             });
+}
     });
 });
 proc.stderr.on('data', function(err) {
