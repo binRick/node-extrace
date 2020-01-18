@@ -135,10 +135,10 @@ proc.stdout.on('data', function(out) {
 
 
 var CGROUPS_ENABLED = false;
-
-if(CGROUPS_ENABLED){
 var ARGS = J.CG.cmds.create.split(' ');
                 l('  CG :: Create :: Args>>', ARGS);
+
+if(CGROUPS_ENABLED){
             var createProcess = child.spawn('sudo', ARGS);
             createProcess.stderr.on('data', function(d){
                 l('  CG :: Create :: stderr>> ', d.toString());
