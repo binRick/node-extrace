@@ -3,7 +3,7 @@ set -ex
 
 git pull
 
-if [[ ! -f /usr/sbin/mysqld ]]; then
+if [[ ! -f /usr/libexec/mysqld ]]; then
     dnf -y install mariadb-server
 fi
 
