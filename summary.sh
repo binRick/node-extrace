@@ -9,10 +9,10 @@ doSQL(){
 
 doSumColumn(){
     echo "$1 $2 Sum:"
-    doSQL "SELECT $1, SUM($2) as $3 \
+    doSQL "SELECT $1, SUM($2) as \`$3\` \
     FROM execs \
     GROUP BY $1 \
-    ORDER BY $3 DESC \
+    ORDER BY \`$3\` DESC \
     LIMIT 5"
     echo
 }
