@@ -22,7 +22,7 @@ CREATE TABLE `execs` (
   `exit_code` INT default NULL,
   `line` MEDIUMTEXT NOT NULL,
   `time` varchar(128) default NULL,
-  `time_ms` INT default NULL;
+  `time_ms` INT default NULL,
   `started_ts` timestamp NOT NULL default now(),
   `ended_ts` timestamp NULL,
   `line_b64` MEDIUMTEXT NOT NULL,
