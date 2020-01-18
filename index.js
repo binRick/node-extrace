@@ -58,8 +58,7 @@ var handleInsert = function(ex, _cb) {
         try {
             var SQL = 'UPDATE execs SET exit_code = ?, time = ?, ended_ts = NOW() where pid = ?';
             var VARS = [ex.code, ex.time, ex.pid];
-            var query = connection.query(SQL, VARS),
-                function(error, results, fields) {
+            var query = connection.query(SQL, VARS, function(error, results, fields) {
                     _cb(error);
                     if (debug)
                         l(c.green('Updated Row #') + c.black.bgWhite(ex.pid) + c.green('!'));
