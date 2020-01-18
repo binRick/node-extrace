@@ -218,19 +218,19 @@ proc.stdout.on('data', function(out) {
             pR.cgroup_max_mem_bytes = null;
             pR.cgroup_cpuacct_usage = null;
 
-var CG_NAME = config.cg_prefix + String(pR.pid);
-var CG_DIR = '/sys/fs/cgroup/pids/' + CG_NAME;
+            var CG_NAME = config.cg_prefix + String(pR.pid);
+            var CG_DIR = '/sys/fs/cgroup/pids/' + CG_NAME;
 
-l('CG_DIR=', CG_DIR);
+            l('CG_DIR=', CG_DIR);
 
-fs.stat(CG_DIR, function(e,CG_STAT){
-if(e)throw e;
+            fs.stat(CG_DIR, function(e, CG_STAT) {
+                if (e) throw e;
 
-l('  CG_STAT=', CG_STAT);
+                l('  CG_STAT=', CG_STAT);
 
 
 
-});
+            });
 
             if (debug)
                 l('END>', Object.keys(pR));
