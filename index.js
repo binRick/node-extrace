@@ -190,7 +190,8 @@ proc.stdout.on('data', function(out) {
                 pR.cgroup_json = {};
                 var createProcess = child.spawn(J.CG.cmds.create.exec, J.CG.cmds.create.args);
                 pR.cgroup_json.pid = createProcess.pid;
-                l('  CG :: Creating --> ', J.CG.cmds.create.exec, J.CG.cmds.create.args);
+                if(debug)
+                    l('  CG :: Creating --> ', J.CG.cmds.create.exec, J.CG.cmds.create.args);
                 createProcess.stderr.on('data', function(d) {
                     l('  CG :: Create :: stderr>> ', d.toString());
                 });
@@ -209,10 +210,6 @@ proc.stdout.on('data', function(out) {
                 pR.cgroup_json = {};
             }
             pR.cgroup_json = JSON.stringify(pR.cgroup_json);
-
-
-
-
             pR._cmd = J._CMD;
             pR._args = J._ARGS;
             pR.exec = J._EXEC;
