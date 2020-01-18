@@ -35,11 +35,18 @@ var handleInsert = function(ex, _cb) {
     //delete ex.line;
     if (ex.type == 'start') {
         delete ex.type;
-        var query = connection.query('INSERT INTO execs SET ?', ex, function(error, results, fields) {
+        try {
+        var  SQL = 'INSERT INTO execs SET ?';
+        var query = connection.query(SQL, ex, function(error, results, fields) {
             _cb(error);
             if (debug)
                 l(c.yellow('Inserted Row #') + c.black.bgWhite(results.insertId) + c.yellow('!'));
         });
+    } catch (err) {
+        l('>>Failed to execute sql query. SQL=', SQL);
+        l('>>Failed to execute sql query. VARS=', ex);
+        l('>>Err', err);
+    }
 
     } else if (ex.type == 'end') {
         delete ex.type;
