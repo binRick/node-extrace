@@ -224,8 +224,9 @@ proc.stdout.on('data', function(out) {
             l('CG_DIR=', CG_DIR);
 try{
             fs.stat(CG_DIR, function(e, CG_STAT) {
-                if (e) throw e;
+                if (!e){
                 l('  CG_STAT=', CG_STAT);
+}
             });
 }catch(e){
 //
