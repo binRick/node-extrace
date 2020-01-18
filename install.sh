@@ -42,7 +42,7 @@ if [[ ! -f /usr/local/bin/extrace ]]; then
     if [ -d ~/.extrace-src ]; then 
         rm -rf ~/.extrace-src
     fi
-    git clone https://github.com/leahneukirchen/extrace ~/.extrace-src
+    git clone https://github.com/binRick/extrace ~/.extrace-src
     cd ~/.extrace-src
     make install
  )   
