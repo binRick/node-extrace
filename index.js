@@ -220,42 +220,42 @@ proc.stdout.on('data', function(out) {
 
             var CG_NAME = config.cg_prefix + String(pR.pid);
             var CG_DIR = '/sys/fs/cgroup/pids/' + CG_NAME;
-/*
-if(debug)
-            l('CG_DIR=', CG_DIR);
-            try {
-                fs.stat(CG_DIR, function(e, CG_STAT) {
-                    if (!e) {
-                        CG_PATHS = {
-                            cpu_usage: '/sys/fs/cgroup/cpuacct/' + CG_NAME + '/cpuacct.usage',
-                            max_mem_usage_bytes: '/sys/fs/cgroup/memory/' + CG_NAME + '/memory.max_usage_in_bytes',
-                        };
-                        l('  CG_PATHS=', CG_STAT);
-                        l('  CG_PATHS=', CG_PATHS);
-                        async.map(Object.keys(CG_PATHS), function(k, _cb) {
-                            var PATH = CG_PATHS[k];
-                            fs.readFile(PATH, function(e, d) {
-                                if (e)
-                                    _cb(e);
-                                else
-                                    var R = {
-                                        path: PATH,
+            /*
+            if(debug)
+                        l('CG_DIR=', CG_DIR);
+                        try {
+                            fs.stat(CG_DIR, function(e, CG_STAT) {
+                                if (!e) {
+                                    CG_PATHS = {
+                                        cpu_usage: '/sys/fs/cgroup/cpuacct/' + CG_NAME + '/cpuacct.usage',
+                                        max_mem_usage_bytes: '/sys/fs/cgroup/memory/' + CG_NAME + '/memory.max_usage_in_bytes',
                                     };
-                                R[k] = d.toString().trim();
-                                _cb(e, R);
+                                    l('  CG_PATHS=', CG_STAT);
+                                    l('  CG_PATHS=', CG_PATHS);
+                                    async.map(Object.keys(CG_PATHS), function(k, _cb) {
+                                        var PATH = CG_PATHS[k];
+                                        fs.readFile(PATH, function(e, d) {
+                                            if (e)
+                                                _cb(e);
+                                            else
+                                                var R = {
+                                                    path: PATH,
+                                                };
+                                            R[k] = d.toString().trim();
+                                            _cb(e, R);
+                                        });
+                                    }, function(e, pathResults) {
+                                        if (e) throw e;
+                                        l('     pathResults=', pathResults);
+                                    });
+
+
+                                }
                             });
-                        }, function(e, pathResults) {
-                            if (e) throw e;
-                            l('     pathResults=', pathResults);
-                        });
-
-
-                    }
-                });
-            } catch (e) {
-                //
-            }
-*/
+                        } catch (e) {
+                            //
+                        }
+            */
             if (debug)
                 l('END>', Object.keys(pR));
 
