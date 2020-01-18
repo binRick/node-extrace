@@ -26,6 +26,8 @@ connection.connect();
 
 var setupCGroup = function(){
     l(c.green('Creating'), config.cg_index.cmds.create);
+    out = child.execSync(config.cg_index.cmds.create);
+    l(c.yellow(out);
 
 };
 
