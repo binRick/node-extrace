@@ -177,6 +177,12 @@ proc.stdout.on('data', function(out) {
             pR.exec = spaceOut[1];
             pR.code = spaceOut[3].split('=')[1];
             pR.time = spaceOut[4].split('=')[1].trim();
+
+            pR.json_end = {
+             pid: pR.pid,
+            };
+
+
         } else {
             l('Unknown Output: ' + o);
             process.exit(1)
