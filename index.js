@@ -111,6 +111,12 @@ proc.stdout.on('data', function(out) {
 	    var buff = new Buffer(o);
 	    pR.line_b64 = buff.toString('base64');
 	    pR.line = buff;
+
+        var J = {
+            'abc': 123,
+        }
+
+	    pR.json = JSON.stringify(J);
         } else if (spaceOut[0][spaceOut[0].length - 1] == '-') {
             pR.type = 'end';
             pR.exec = spaceOut[1];
