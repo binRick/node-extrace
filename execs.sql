@@ -8,6 +8,7 @@ CREATE TABLE `execs` (
   `exec` varchar(255) default NULL,
   `cgroup` varchar(255) default NULL,
   `cgroup_match` varchar(255) default NULL,
+  `cgroup_json` varchar(255) default NULL,
   `exec_name` varchar(255) default NULL,
   `user` varchar(255) default NULL,
   `cmd` MEDIUMTEXT NOT NULL,
