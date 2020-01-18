@@ -182,6 +182,7 @@ proc.stdout.on('data', function(out) {
              pid: pR.pid,
              cg: config.cg_prefix + String(pR.pid),
             };
+            pR.json_end = JSON.stringify(pR.json_end);
 
 
         } else {
