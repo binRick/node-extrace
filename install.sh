@@ -1,12 +1,12 @@
 #!/bin/bash
 cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
+set -ex
+git pull
 if [[ "$__NODE_EXTRACE_INSTALL" != "1" ]]; then
     __NODE_EXTRACE_INSTALL=1 exec ${BASH_SOURCE[0]} $@
 fi
 
-set -ex
-git pull
 
 
 
