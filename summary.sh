@@ -31,6 +31,7 @@ doFrequencyColumn(){
 
 doSummary(){
     clear
+    ./count.sh
     doSQL "select distinct exec from execs"
     doFrequencyColumn exec 10
     doFrequencyColumn user 5
